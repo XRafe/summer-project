@@ -1,4 +1,4 @@
-package org.example.summerproject.repository;
+package org.example.summerproject.repository.jpa;
 
 import org.example.summerproject.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

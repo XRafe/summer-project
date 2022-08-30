@@ -1,7 +1,6 @@
 package org.example.summerproject.entity;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,11 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity
-@NoArgsConstructor
 @Setter
 @Getter
+@NoArgsConstructor
 public class User {
     @Id
     @SequenceGenerator(name = "user_id_seq_generator", sequenceName = "user_id_seq")
@@ -24,6 +22,11 @@ public class User {
 
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     private Set<Note> notes;
+
+    public User(String email, String name) {
+        this.email = email;
+        this.name = name;
+    }
 }

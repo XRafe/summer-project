@@ -1,12 +1,12 @@
-package org.example.summerproject.repository;
+package org.example.summerproject.repository.custom.connection;
 
+import lombok.SneakyThrows;
 import org.postgresql.ds.PGSimpleDataSource;
-import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@Component
 public class AppDataSource {
     private static final PGSimpleDataSource ds;
     private static final Connection connection;
@@ -30,4 +30,8 @@ public class AppDataSource {
         return connection;
     }
 
+    @SneakyThrows
+    public static ResultSet requestToDatabase(String req) {
+        return getConnection().prepareStatement(req).executeQuery();
+    }
 }

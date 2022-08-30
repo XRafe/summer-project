@@ -1,36 +1,34 @@
 package org.example.summerproject.controller;
 
-import lombok.AllArgsConstructor;
-import org.example.summerproject.dto.NoteDTO;
-import org.example.summerproject.dto.UserDTO;
-import org.example.summerproject.service.impl.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.example.summerproject.dto.user.UserDto;
+import org.example.summerproject.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
-    private UserServiceImpl userService;
+    private final UserService userService;
 
     @PostMapping("/create")
-    public UserDTO createUser(UserDTO userDTO) {
+    public UserDto createUser(UserDto userDTO) {
         return userService.createUser(userDTO);
     }
 
     @GetMapping("/data/find-all")
-    public List<NoteDTO> findAllUserFromData() throws SQLException {
-        return userService.findAllUserFromData().stream().toList();
+    public List<UserDto> findAllUserFromData() {
+        return userService.findAllUserFromData();
     }
 
     @GetMapping("/find-all")
-    public List<UserDTO> getAllUser() {
+    public List<UserDto> getAllUser() {
         return userService.getAllUser();
     }
 }

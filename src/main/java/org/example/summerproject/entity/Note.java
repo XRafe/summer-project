@@ -1,17 +1,15 @@
 package org.example.summerproject.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
 @Entity
-@NoArgsConstructor
 @Setter
 @Getter
+@NoArgsConstructor
 public class Note {
     @Id
     @SequenceGenerator(name = "note_id_seq_generator", sequenceName = "note_id_seq")
@@ -22,6 +20,15 @@ public class Note {
 
     private String text;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+    public Note(String name, String text) {
+        this.name = name;
+        this.text = text;
+    }
 }
