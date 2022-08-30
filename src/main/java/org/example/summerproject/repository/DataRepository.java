@@ -4,16 +4,16 @@ import org.example.summerproject.dto.NoteDTO;
 import org.example.summerproject.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 @Component
-public class Data {
+public class DataRepository implements Serializable {
 
-    public Set<UserDTO> findAllUser() {
-        try (var st = AppDataSource.getConnection()
+    public ArrayList<UserDTO> findAllUser() {
+        try (var st = AppDataSource.getDataSource().getConnection()
                 .prepareStatement("select * from summerproject.user")) {
             var result = st.executeQuery();
             return mapResultSetToUserDto(result);
@@ -22,8 +22,8 @@ public class Data {
         }
     }
 
-    public Set<UserDTO> mapResultSetToUserDto(ResultSet resultSet) throws SQLException {
-        Set<UserDTO> users = new HashSet<>();
+    public ArrayList<UserDTO> mapResultSetToUserDto(ResultSet resultSet) throws SQLException {
+        ArrayList<UserDTO> users = new ArrayList<>();
         while (resultSet.next()) {
             String email = resultSet.getString("email");
             String name = resultSet.getString("name");
@@ -34,8 +34,8 @@ public class Data {
     }
 
 
-    public Set<NoteDTO> findAllNote() throws SQLException {
-        try (var st = AppDataSource.getConnection()
+    public ArrayList<NoteDTO> findAllNote() throws SQLException {
+        try (var st = AppDataSource.getDataSource().getConnection()
                 .prepareStatement("select * from summerproject.note")) {
             var result = st.executeQuery();
             return mapResultSetToNoteDto(result);
@@ -45,8 +45,8 @@ public class Data {
     }
 
 
-    public Set<NoteDTO> mapResultSetToNoteDto(ResultSet resultSet) throws SQLException {
-        Set<NoteDTO> notes = new HashSet<>();
+    public ArrayList<NoteDTO> mapResultSetToNoteDto(ResultSet resultSet) throws SQLException {
+        ArrayList<NoteDTO> notes = new ArrayList<>();
         while (resultSet.next()) {
             String email = resultSet.getString("name");
             String name = resultSet.getString("text");

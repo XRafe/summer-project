@@ -1,9 +1,10 @@
 package org.example.summerproject.controller;
 
-import lombok.AllArgsConstructor;
 import org.example.summerproject.dto.NoteDTO;
 import org.example.summerproject.dto.UserDTO;
-import org.example.summerproject.service.impl.UserServiceImpl;
+import org.example.summerproject.entity.User;
+import org.example.summerproject.service.ImplService.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +15,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@AllArgsConstructor
 public class UserController {
 
-    private UserServiceImpl userService;
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/create")
-    public UserDTO createUser(UserDTO userDTO) {
-        return userService.createUser(userDTO);
+    public UserDTO createUser(User user) {
+        return userService.createUser(user);
     }
 
     @GetMapping("/data/find-all")
