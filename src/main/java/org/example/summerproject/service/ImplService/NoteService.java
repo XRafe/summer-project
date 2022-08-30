@@ -1,25 +1,26 @@
-package org.example.summerproject.service.impl;
+package org.example.summerproject.service.ImplService;
 
 import lombok.RequiredArgsConstructor;
 import org.example.summerproject.dto.NoteDTO;
 import org.example.summerproject.entity.Note;
-import org.example.summerproject.repository.Data;
+import org.example.summerproject.repository.DataRepository;
 import org.example.summerproject.repository.NoteRepository;
-import org.example.summerproject.service.NoteService;
+import org.example.summerproject.service.INoteService;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class NoteServiceImpl implements NoteService {
+public class NoteService implements INoteService {
 
     private final NoteRepository noteRepository;
 
-    private final Data data;
+    private final DataRepository dataRepository;
 
     @Override
     public NoteDTO createNote(NoteDTO noteDTO) {
@@ -40,7 +41,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Set<NoteDTO> findAllNoteFromData() throws SQLException {
-        return data.findAllNote();
+        return new HashSet<>(dataRepository.findAllNote());
     }
 
     @Override
