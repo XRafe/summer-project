@@ -1,0 +1,4 @@
+.*
+gradle
+gradlew*
+settings.gradle
