@@ -1,19 +1,16 @@
 package org.example.summerproject.service;
 
-import org.example.summerproject.dto.NoteDTO;
-import org.example.summerproject.entity.Note;
+import org.example.summerproject.dto.note.NoteDto;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 public interface NoteService {
 
-    NoteDTO createNote(NoteDTO noteDTO);
+    NoteDto createNote(NoteDto noteDTO);
 
-    List<NoteDTO> getAllNote();
+    List<NoteDto> getAllNote();
 
-    Set<NoteDTO> findAllNoteFromData() throws SQLException;
+    List<NoteDto> findAllNoteFromData();
 
-    Note findNoteByName(String name);
+    NoteDto findNoteByName(String name);
 }

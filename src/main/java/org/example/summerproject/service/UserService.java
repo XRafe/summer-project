@@ -1,19 +1,14 @@
 package org.example.summerproject.service;
 
-import org.example.summerproject.dto.NoteDTO;
-import org.example.summerproject.dto.UserDTO;
+import org.example.summerproject.dto.user.UserDto;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 public interface UserService {
 
-    UserDTO createUser(UserDTO userDTO);
+    UserDto createUser(UserDto userDTO);
 
-    List<UserDTO> getAllUser();
+    List<UserDto> getAllUser();
 
-    Set<NoteDTO> findAllUserFromData() throws SQLException;
-
-    UserDTO signIn();
+    List<UserDto> findAllUserFromData();
 }
