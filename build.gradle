@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'idea'
+    id 'application'
 }
 
 group 'org.example'
@@ -12,18 +14,15 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter:2.7.3'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
-    implementation 'org.springframework.boot:spring-boot-starter-tomcat:2.7.3'
-
-    implementation 'org.flywaydb:flyway-core:9.2.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+
     implementation 'org.postgresql:postgresql:42.4.1'
     runtimeOnly 'org.postgresql:postgresql:42.4.1'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     compileOnly 'org.projectlombok:lombok:1.18.24'
 
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
-    implementation 'io.swagger.core.v3:swagger-annotations:2.2.0'
+
 }
 
 test {

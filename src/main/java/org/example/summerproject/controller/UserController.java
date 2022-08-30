@@ -1,9 +1,9 @@
 package org.example.summerproject.controller;
 
-import org.example.summerproject.dto.NoteDTO;
-import org.example.summerproject.dto.UserDTO;
+import org.example.summerproject.dto.NoteDto;
+import org.example.summerproject.dto.UserDto;
 import org.example.summerproject.entity.User;
-import org.example.summerproject.service.ImplService.UserService;
+import org.example.summerproject.service.ImplService.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,25 +17,25 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
     @PostMapping("/create")
-    public UserDTO createUser(User user) {
+    public UserDto createUser(User user) {
         return userService.createUser(user);
     }
 
     @GetMapping("/data/find-all")
-    public List<NoteDTO> findAllUserFromData() throws SQLException {
+    public List<NoteDto> findAllUserFromData() throws SQLException {
         return userService.findAllUserFromData().stream().toList();
     }
 
     @GetMapping("/find-all")
-    public List<UserDTO> getAllUser() {
+    public List<UserDto> getAllUser() {
         return userService.getAllUser();
     }
 }
